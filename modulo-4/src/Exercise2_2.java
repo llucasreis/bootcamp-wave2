@@ -12,8 +12,8 @@ public class Exercise2_2 {
         System.out.println("Empresa Y - 01/01" + year + " - Valor da empresa: " + YValue + "m");
 
         while (XValue < YValue) {
-            XValue = (XValue * XGrowing) + XValue;
-            YValue = (YValue * YGrowing) + YValue;
+            XValue += (XValue * XGrowing);
+            YValue += (YValue * YGrowing);
 
             year++;
 
