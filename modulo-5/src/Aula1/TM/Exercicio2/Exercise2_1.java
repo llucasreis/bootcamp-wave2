@@ -1,3 +1,5 @@
+package Aula1.TM.Exercicio2;
+
 import java.util.Arrays;
 
 public class Exercise2_1 {

@@ -1,3 +1,5 @@
+package Aula1.TM.Exercicio2;
+
 public class Exercise2_2 {
     public static void main(String[] args) {
         double XValue = 1.13;

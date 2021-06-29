@@ -1,3 +1,5 @@
+package Aula1.TM.Exercicio1;
+
 import java.util.Scanner;
 
 public class Exercise1_1 {
