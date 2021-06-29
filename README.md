@@ -19,3 +19,6 @@
   - Exercício 2: Em grupo
   - Exercício 2 (Slack): Feito
 - **TT**: Em grupo
+
+### Aula 4
+  - Exercícios: Feito
