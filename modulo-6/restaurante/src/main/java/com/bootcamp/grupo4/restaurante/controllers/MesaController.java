@@ -31,7 +31,7 @@ public class MesaController {
     }
 
     @PostMapping("/{id}/fechar")
-    public ResponseEntity<?> fecharMesa(@PathVariable Long id) {
+    public ResponseEntity<MesaDTO> fecharMesa(@PathVariable Long id) {
         Mesa mesa = this.mesaService.fecharMesa(id);
 
         if (mesa != null) {

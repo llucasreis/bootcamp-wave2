@@ -26,6 +26,26 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+    /*
+    Exemplo de pedido
+    {
+	"mesa": 1,
+	"pratos": [
+		{
+			"id": 1,
+			"preco": 30.0,
+			"descricao": "Peru",
+			"quantidade": 1
+		},
+		{
+			"id": 2,
+			"preco": 5.0,
+			"descricao": "Bolinho",
+			"quantidade": 5
+		}
+	  ]
+    }
+     */
     @PostMapping
     public ResponseEntity<PedidoDTO> adicionarPedido(@RequestBody PedidoFormDTO pedidoFormDTO) {
         Pedido pedido = this.pedidoService.adicionarPedido(pedidoFormDTO);
