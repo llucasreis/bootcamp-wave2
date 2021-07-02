@@ -2,6 +2,7 @@ package com.bootcamp.grupo4.restaurante.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mesa {
     private Long id;
@@ -46,5 +47,11 @@ public class Mesa {
 
     public void adicionarPedido(Pedido pedido) {
         this.pedidos.add(pedido);
+    }
+
+    public void fecharPedidos() {
+        setPedidos(
+                this.pedidos.stream().peek(p -> p.setPedidoAtivo(false)).collect(Collectors.toList())
+        );
     }
 }

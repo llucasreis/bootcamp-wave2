@@ -15,12 +15,12 @@ public class CaixaService {
     }
 
     public void fecharMesa(double valorTotalConsumido) {
-        Caixa caixa = this.caixaRepository.find();
+        Caixa caixa = this.caixaRepository.findCaixaAtual();
         caixa.setValor(
                 caixa.getValor() + valorTotalConsumido
         );
 
-        this.caixaRepository.atualizaCaixa(caixa);
+        this.caixaRepository.atualizarCaixa(caixa);
     }
 
     public Caixa retornarCaixa(Long id) {

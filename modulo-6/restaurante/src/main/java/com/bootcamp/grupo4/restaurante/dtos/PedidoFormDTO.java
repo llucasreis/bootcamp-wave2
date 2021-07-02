@@ -3,6 +3,7 @@ package com.bootcamp.grupo4.restaurante.dtos;
 import com.bootcamp.grupo4.restaurante.entities.Mesa;
 import com.bootcamp.grupo4.restaurante.entities.Pedido;
 import com.bootcamp.grupo4.restaurante.entities.Prato;
+import com.bootcamp.grupo4.restaurante.utils.DataUtil;
 
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class PedidoFormDTO {
     }
 
     public Pedido converter(Long id, Mesa mesa, double valorTotal) {
-        return new Pedido(id, mesa, this.pratos, valorTotal);
+        return new Pedido(id, mesa, this.pratos,
+                valorTotal, true, DataUtil.getDataAtual());
     }
 
     public Long getMesa() {

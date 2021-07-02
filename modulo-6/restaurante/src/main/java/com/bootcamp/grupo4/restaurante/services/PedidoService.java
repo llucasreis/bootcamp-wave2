@@ -30,8 +30,10 @@ public class PedidoService {
                 this.mesaRepository.getProximoPedidoId(mesa.getId()),
                 mesa, valorTotal);
 
-        this.mesaService.adicionarPedido(pedido);
+        if (this.mesaService.adicionarPedido(pedido)) {
+            return pedido;
+        }
 
-        return pedido;
+        return null;
     }
 }

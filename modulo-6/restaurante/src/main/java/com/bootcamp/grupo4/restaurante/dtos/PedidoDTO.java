@@ -10,18 +10,25 @@ public class PedidoDTO {
     private Long id;
     private double valorTotal;
     private List<Prato> pratos;
+    private boolean pedidoAtivo;
+    private String data;
 
-    public PedidoDTO(Long id, double valorTotal, List<Prato> pratos) {
+    public PedidoDTO(Long id, double valorTotal, List<Prato> pratos,
+                     boolean pedidoAtivo, String data) {
         this.id = id;
         this.valorTotal = valorTotal;
         this.pratos = pratos;
+        this.pedidoAtivo = pedidoAtivo;
+        this.data = data;
     }
 
     public static PedidoDTO converter(Pedido pedido) {
         return new PedidoDTO(
                 pedido.getId(),
                 pedido.getValorTotal(),
-                pedido.getPratos()
+                pedido.getPratos(),
+                pedido.isPedidoAtivo(),
+                pedido.getData()
         );
     }
 
@@ -51,5 +58,21 @@ public class PedidoDTO {
 
     public void setPratos(List<Prato> pratos) {
         this.pratos = pratos;
+    }
+
+    public boolean isPedidoAtivo() {
+        return pedidoAtivo;
+    }
+
+    public void setPedidoAtivo(boolean pedidoAtivo) {
+        this.pedidoAtivo = pedidoAtivo;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

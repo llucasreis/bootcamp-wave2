@@ -20,8 +20,8 @@ public class MesaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MesaDTO> retornarPedidos(@PathVariable Long id) {
-        Mesa mesa = this.mesaService.retornarPedidos(id);
+    public ResponseEntity<MesaDTO> retornarPedidos(@PathVariable Long id, @RequestParam(required = false) String ativos) {
+        Mesa mesa = this.mesaService.retornarPedidos(id, ativos);
 
         if (mesa != null) {
             return new ResponseEntity<>(MesaDTO.converter(mesa), HttpStatus.OK);

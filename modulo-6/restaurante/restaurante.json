@@ -1,0 +1,127 @@
+{
+  "Mesa": [
+    {
+      "id": 1,
+      "pedidos": [
+        {
+          "id": 1,
+          "pratos": [
+            {
+              "id": 1,
+              "preco": 30.0,
+              "descricao": "Peru",
+              "quantidade": 1
+            },
+            {
+              "id": 2,
+              "preco": 5.0,
+              "descricao": "Bolinho",
+              "quantidade": 5
+            }
+          ],
+          "valorTotal": 55.0,
+          "pedidoAtivo": false,
+          "data": "02/07/2021"
+        },
+        {
+          "id": 2,
+          "pratos": [
+            {
+              "id": 1,
+              "preco": 30.0,
+              "descricao": "Peru",
+              "quantidade": 1
+            },
+            {
+              "id": 2,
+              "preco": 5.0,
+              "descricao": "Bolinho",
+              "quantidade": 10
+            }
+          ],
+          "valorTotal": 80.0,
+          "pedidoAtivo": false,
+          "data": "02/07/2021"
+        },
+        {
+          "id": 3,
+          "pratos": [
+            {
+              "id": 1,
+              "preco": 30.0,
+              "descricao": "Peru",
+              "quantidade": 1
+            },
+            {
+              "id": 2,
+              "preco": 5.0,
+              "descricao": "Bolinho",
+              "quantidade": 10
+            }
+          ],
+          "valorTotal": 80.0,
+          "pedidoAtivo": false,
+          "data": "02/07/2021"
+        },
+        {
+          "id": 4,
+          "pratos": [
+            {
+              "id": 1,
+              "preco": 30.0,
+              "descricao": "Peru",
+              "quantidade": 1
+            },
+            {
+              "id": 2,
+              "preco": 5.0,
+              "descricao": "Bolinho",
+              "quantidade": 5
+            }
+          ],
+          "valorTotal": 55.0,
+          "pedidoAtivo": false,
+          "data": "02/07/2021"
+        },
+        {
+          "id": 5,
+          "pratos": [
+            {
+              "id": 1,
+              "preco": 30.0,
+              "descricao": "Peru",
+              "quantidade": 1
+            },
+            {
+              "id": 2,
+              "preco": 5.0,
+              "descricao": "Bolinho",
+              "quantidade": 10
+            }
+          ],
+          "valorTotal": 80.0,
+          "pedidoAtivo": false,
+          "data": "02/07/2021"
+        }
+      ],
+      "valorTotalConsumido": 0.0
+    },
+    {
+      "id": 2,
+      "pedidos": [],
+      "valorTotalConsumido": 0.0
+    },
+    {
+      "id": 3,
+      "pedidos": [],
+      "valorTotalConsumido": 0.0
+    }
+  ],
+  "Caixa": [
+    {
+      "id": 1,
+      "valor": 350.0,
+      "data": "02/07/2021"
+    }
+  ]
+}

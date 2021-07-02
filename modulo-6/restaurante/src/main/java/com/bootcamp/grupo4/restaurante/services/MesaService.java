@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Service
 public class MesaService {
@@ -21,7 +22,7 @@ public class MesaService {
         this.caixaService = caixaService;
     }
 
-    public Mesa adicionarPedido(Pedido pedido) {
+    public boolean adicionarPedido(Pedido pedido) {
         Mesa mesa = this.mesaRepository.findOne(pedido.getMesa().getId());
 
         if (mesa != null) {
@@ -31,16 +32,18 @@ public class MesaService {
                     + pedido.getValorTotal()
             );
 
-            this.mesaRepository.atualizarMesa(mesa);
-
-            return mesa;
-        } else {
-            return null;
+            return this.mesaRepository.atualizarMesa(mesa);
         }
+        return false;
     }
 
-    public Mesa retornarPedidos(Long id) {
-        return this.mesaRepository.findOne(id);
+    public Mesa retornarPedidos(Long id, String ativos) {
+        if (ativos == null || ativos.equals("") || ativos.equals("true")) {
+            return this.mesaRepository.findWithPedidosAtivos(id);
+        } else {
+            return this.mesaRepository.findWithPedidosNaoAtivos(id);
+        }
+
     }
 
     public Mesa fecharMesa(Long id) {
@@ -49,15 +52,14 @@ public class MesaService {
         if (mesa != null) {
             this.caixaService.fecharMesa(mesa.getValorTotalConsumido());
 
-            mesa.setPedidos(new ArrayList<>());
+            mesa.fecharPedidos();
             mesa.setValorTotalConsumido(0.0);
 
-            this.mesaRepository.atualizarMesa(mesa);
-
-            return mesa;
-        } else {
-            return null;
+            if (this.mesaRepository.atualizarMesa(mesa)) {
+                mesa.setPedidos(new ArrayList<>());
+                return mesa;
+            }
         }
+        return null;
     }
-
 }
