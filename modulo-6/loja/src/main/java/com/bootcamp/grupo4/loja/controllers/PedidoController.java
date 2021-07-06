@@ -49,9 +49,29 @@ public class PedidoController {
         Pedido pedido = this.pedidoService.adicionarPedido(pedidoFormDTO);
 
         if (pedido != null) {
-            return new ResponseEntity<>(pedido, HttpStatus.OK);
+            return new ResponseEntity<>(pedido, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Pedido> atualizarPedido(@PathVariable Long id, @RequestBody PedidoFormDTO pedidoFormDTO) {
+        Pedido pedido = this.pedidoService.atualizarPedido(id, pedidoFormDTO);
+
+        if (pedido != null) {
+            return ResponseEntity.ok(pedido);
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removerPedido(@PathVariable Long id, @RequestHeader("clientId") Long clientId) {
+        boolean pedidoRemovido = this.pedidoService.removerPedido(id, clientId);
+
+        if (pedidoRemovido) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/cliente/{id}")
@@ -62,6 +82,11 @@ public class PedidoController {
             return new ResponseEntity<>(pedidos, HttpStatus.OK);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/caixa/{data}")
+    public List<Pedido> pedidosDoDia(@PathVariable String data) {
+        return this.pedidoService.pedidosDoDia(data);
     }
 
 }

@@ -14,8 +14,12 @@ public class PedidoFormDTO {
         this.produtos = produtos;
     }
 
-    public Pedido converter(Long id, double valorTotal) {
-        return new Pedido(id, this.produtos, valorTotal);
+    public Pedido converter(Long id, double valorTotal, String data) {
+        return new Pedido(
+                id,
+                this.produtos,
+                valorTotal,
+                data);
     }
 
     public Long getCliente() {

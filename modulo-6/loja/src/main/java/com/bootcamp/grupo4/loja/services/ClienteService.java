@@ -24,10 +24,20 @@ public class ClienteService {
         if (cliente != null) {
             cliente.adicionarPedido(pedido);
 
-            this.clienteRepository.atualizarCliente(cliente);
-
-            return true;
+            return this.clienteRepository.atualizarCliente(cliente);
         }
         return false;
+    }
+
+    public boolean atualizarPedido(Cliente cliente, Pedido pedido) {
+        cliente.atualizarPedido(pedido);
+
+        return this.clienteRepository.atualizarCliente(cliente);
+    }
+
+    public boolean removerPedido(Cliente cliente, Pedido pedido) {
+        cliente.removerPedido(pedido);
+
+        return this.clienteRepository.atualizarCliente(cliente);
     }
 }

@@ -1,0 +1,20 @@
+{
+  "Cliente": [
+    {
+      "id": 1,
+      "nome": "Lucas",
+      "cpf": "19962680077",
+      "email": "lucas@gmail.com",
+      "telefone": "987339065",
+      "pedidos": []
+    },
+    {
+      "id": 2,
+      "nome": "Emily",
+      "cpf": "19962680077",
+      "email": "emily@gmail.com",
+      "telefone": "987339064",
+      "pedidos": []
+    }
+  ]
+}

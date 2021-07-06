@@ -71,4 +71,19 @@ public class Cliente {
     public void adicionarPedido(Pedido pedido) {
         this.pedidos.add(pedido);
     }
+
+    public void atualizarPedido(Pedido pedido) {
+        int arrayIndex = -1;
+        for (int i = 0; i<this.pedidos.size(); i++) {
+            if (this.pedidos.get(i).getId().equals(pedido.getId())) {
+                arrayIndex = i;
+            }
+        }
+
+        this.pedidos.set(arrayIndex, pedido);
+    }
+
+    public void removerPedido(Pedido pedido) {
+        this.pedidos.remove(pedido);
+    }
 }

@@ -2,28 +2,25 @@ package com.bootcamp.grupo4.loja.repositories;
 
 import com.bootcamp.grupo4.loja.entities.Cliente;
 import com.bootcamp.grupo4.loja.entities.Pedido;
+import com.bootcamp.grupo4.loja.repositories.dao.ClienteDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class ClienteRepository {
+    private final ClienteDAO clienteDAO;
 
-    private final List<Cliente> clienteList;
-
-    ClienteRepository() {
-        this.clienteList = new ArrayList<>(Arrays.asList(
-                new Cliente(1L, "Lucas", "73874734048", "lucas@gmail.com", "987339065"),
-                new Cliente(2L, "Emily", "19962680077", "emily@gmail.com", "987339064")
-        ));
+    @Autowired
+    ClienteRepository(ClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
     }
 
-    private int findIndex(Long id) {
+    private int findIndex(List<Cliente> clientes, Long id) {
         int arrayIndex = -1;
-        for (int i = 0; i< this.clienteList.size(); i++) {
-            if (this.clienteList.get(i).getId().equals(id)) {
+        for (int i = 0; i<clientes.size(); i++) {
+            if (clientes.get(i).getId().equals(id)) {
                 arrayIndex = i;
             }
         }
@@ -31,8 +28,19 @@ public class ClienteRepository {
         return arrayIndex;
     }
 
+    public List<Cliente> find() {
+        return this.clienteDAO.find();
+    }
+
     public Cliente findOne(Long id) {
-        return this.clienteList.stream().filter(m -> m.getId().equals(id)).findFirst().orElse(null);
+        return this.find().stream()
+                .filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    public Pedido findPedido(Cliente cliente, Long id) {
+        List<Pedido> pedidos = cliente.getPedidos();
+
+        return pedidos.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
     }
 
     public Long getProximoPedidoId(Long id) {
@@ -46,9 +54,13 @@ public class ClienteRepository {
         return ultimoPedido.getId()+1;
     }
 
-    public void atualizarCliente(Cliente cliente) {
-        int index = this.findIndex(cliente.getId());
+    public boolean atualizarCliente(Cliente cliente) {
+        List<Cliente> clientes = this.find();
 
-        this.clienteList.set(index, cliente);
+        int index = this.findIndex(clientes, cliente.getId());
+
+        clientes.set(index, cliente);
+
+        return this.clienteDAO.atualizarCliente(clientes);
     }
 }
