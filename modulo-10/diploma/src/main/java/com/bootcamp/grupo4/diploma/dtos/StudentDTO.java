@@ -18,7 +18,7 @@ public class StudentDTO {
 
     @Valid
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     private List<SubjectDTO> subjects;
 
     public StudentDTO() {

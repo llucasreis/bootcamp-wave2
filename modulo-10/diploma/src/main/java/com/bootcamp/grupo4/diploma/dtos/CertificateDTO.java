@@ -2,22 +2,18 @@ package com.bootcamp.grupo4.diploma.dtos;
 
 import com.bootcamp.grupo4.diploma.entities.Student;
 
-public class DiplomaDTO {
+public class CertificateDTO {
     private String message;
     private double average;
     private Student student;
 
-    public DiplomaDTO() {
+    public CertificateDTO() {
     }
 
-    public DiplomaDTO(double average, Student student) {
+    public CertificateDTO(double average, Student student, String message) {
         this.average = average;
         this.student = student;
-        this.message = createMessage();
-    }
-
-    private String createMessage() {
-        return "Sua média foi de " + this.average;
+        this.message = message;
     }
 
     public String getMessage() {
