@@ -27,4 +27,12 @@ public class Subject {
     public void setNote(int note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subject='" + subject + '\'' +
+                ", note=" + note +
+                '}';
+    }
 }

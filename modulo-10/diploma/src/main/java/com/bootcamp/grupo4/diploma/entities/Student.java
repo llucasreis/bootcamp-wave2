@@ -29,4 +29,12 @@ public class Student {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", subjects=" + subjects +
+                '}';
+    }
 }

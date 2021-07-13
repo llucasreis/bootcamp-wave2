@@ -39,4 +39,13 @@ public class CertificateDTO {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    @Override
+    public String toString() {
+        return "CertificateDTO{" +
+                "message='" + message + '\'' +
+                ", average=" + average +
+                ", student=" + student +
+                '}';
+    }
 }
