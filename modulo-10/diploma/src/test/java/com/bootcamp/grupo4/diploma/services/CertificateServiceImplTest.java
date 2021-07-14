@@ -43,7 +43,7 @@ public class CertificateServiceImplTest {
     }
 
     @Test
-    public void shouldNotBeAbleToAnalyzeNotes() {
+    public void shouldNotBeAbleToAnalyzeNotesWithEmptySubjects() {
         List<Subject> subjects = new ArrayList<>(Arrays.asList(
                 new Subject("Física", 10),
                 new Subject("História", 9),
@@ -136,5 +136,22 @@ public class CertificateServiceImplTest {
         String message = this.certificateService.withHonors(average);
 
         assertNotEquals(expected, message);
+    }
+
+    @Test
+    public void shouldAddReprovedMessageIfAverageIsLessThan7() {
+        String expected = "Sua média foi de 6.0. Reprovado.";
+
+        List<Subject> subjects = new ArrayList<>(Arrays.asList(
+                new Subject("Física", 6),
+                new Subject("História", 6),
+                new Subject("Geografia", 6)
+        ));
+
+        double average = this.certificateService.calculateAverage(subjects);
+
+        String message = this.certificateService.withHonors(average);
+
+        assertEquals(expected, message);
     }
 }
