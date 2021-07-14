@@ -31,10 +31,9 @@ public class CertificateServiceImplTest {
         ));
 
         List<Subject> subjects = SubjectDTO.convert(subjectDTOS);
-        double average = this.certificateService.calculateAverage(subjects);
         Student student = new Student("Lucas", subjects);
-        String message = this.certificateService.withHonors(average);
-        CertificateDTO expected = new CertificateDTO(average, student, message);
+        CertificateDTO expected = new CertificateDTO(9.3, student,
+                "Sua média foi de 9.3. Aprovado. Parabéns!");
 
         StudentDTO studentDTO = new StudentDTO("Lucas", subjectDTOS);
         CertificateDTO response = this.certificateService.analyzeNotes(studentDTO);
@@ -44,19 +43,11 @@ public class CertificateServiceImplTest {
 
     @Test
     public void shouldNotBeAbleToAnalyzeNotesWithEmptySubjects() {
-        List<Subject> subjects = new ArrayList<>(Arrays.asList(
-                new Subject("Física", 10),
-                new Subject("História", 9),
-                new Subject("Geografia", 9)
-        ));
-        double average = this.certificateService.calculateAverage(subjects);
-        Student student = new Student("Lucas", subjects);
-        String message = this.certificateService.withHonors(average);
-        CertificateDTO unexpected = new CertificateDTO(average, student, message);
+        CertificateDTO unexpected = new CertificateDTO(9.0, new Student("Lucas", List.of(
+                new Subject("Física", 9)
+        )), "Sua média foi de 9.0. Aprovado. Parabéns!");
 
-
-        List<SubjectDTO> subjectDTOS = new ArrayList<>();
-        StudentDTO studentDTO = new StudentDTO("Lucas", subjectDTOS);
+        StudentDTO studentDTO = new StudentDTO("Lucas", new ArrayList<>());
         CertificateDTO response = this.certificateService.analyzeNotes(studentDTO);
 
         assertNotEquals(unexpected.toString(), response.toString());
@@ -96,9 +87,10 @@ public class CertificateServiceImplTest {
                 new Subject("História", 9),
                 new Subject("Geografia", 9)
         ));
-        double average = this.certificateService.calculateAverage(subjects);
         Student student = new Student("Lucas", subjects);
-        String message = this.certificateService.withHonors(average);
+
+        double average = 9.3;
+        String message = "Sua média foi de 9.3. Aprovado. Parabéns!";
 
         CertificateDTO expected = new CertificateDTO(average, student, message);
         CertificateDTO response = this.certificateService.writeDiploma(student, average, message);
@@ -115,9 +107,7 @@ public class CertificateServiceImplTest {
                 new Subject("Geografia", 9)
         ));
 
-        double average = this.certificateService.calculateAverage(subjects);
-
-        String message = this.certificateService.withHonors(average);
+        String message = this.certificateService.withHonors(9.3);
 
         assertEquals(expected, message);
     }
@@ -131,9 +121,7 @@ public class CertificateServiceImplTest {
                 new Subject("Geografia", 9)
         ));
 
-        double average = this.certificateService.calculateAverage(subjects);
-
-        String message = this.certificateService.withHonors(average);
+        String message = this.certificateService.withHonors(9.0);
 
         assertNotEquals(expected, message);
     }
@@ -148,9 +136,7 @@ public class CertificateServiceImplTest {
                 new Subject("Geografia", 6)
         ));
 
-        double average = this.certificateService.calculateAverage(subjects);
-
-        String message = this.certificateService.withHonors(average);
+        String message = this.certificateService.withHonors(6.0);
 
         assertEquals(expected, message);
     }
